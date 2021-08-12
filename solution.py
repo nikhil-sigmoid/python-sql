@@ -36,7 +36,7 @@ def solution2(cur):
 #Read and upload the above xlsx in 2) into a new table in the Postgres DB
 
 def solution3(cur):
-
+    ''' From 40-41  Should  have  to read excel first then convert to csv '''
     cur.execute("COPY EmpTable FROM '/Users/nikhil/python-sql-assignment/c.csv' "
                 "DELIMITER ',' CSV HEADER;")
 
@@ -61,6 +61,7 @@ def connect():
         params = config()
 
         # connect to the PostgreSQL server
+        '''Should use logging'''
         print('Connecting to the PostgreSQL database...')
         conn = psycopg2.connect(**params)
 
@@ -68,6 +69,7 @@ def connect():
         cur = conn.cursor()
 
         # execute a statement
+        '''Shoud use logging'''
         print('PostgreSQL database version:')
 
         # display the PostgreSQL database server version
@@ -85,10 +87,12 @@ def connect():
 
         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
+        '''Should use logging'''
         print(error)
     finally:
         if conn is not None:
             conn.close()
+            '''Should use logging'''
             print('Database connection closed.')
 
 
